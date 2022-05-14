@@ -13,11 +13,10 @@ public class StatsService {
     }
 
     public long calcAverage(long[] sales) {
-        StatsService service = new StatsService();
         long average;
         long sum;
 
-        sum = service.calcSum(sales);
+        sum = calcSum(sales);
         average = sum / sales.length;
         return average;
     }
@@ -54,8 +53,7 @@ public class StatsService {
     }
 
     public int aboveAverage(long[] sales) {
-        StatsService service = new StatsService();
-        long average = service.calcAverage(sales);
+        long average = calcAverage(sales);
         int countAboveAverage = 0;
         int month = 0;
 
@@ -70,8 +68,7 @@ public class StatsService {
     }
 
     public int belowAverage(long[] sales) {
-        StatsService service = new StatsService();
-        long average = service.calcAverage(sales);
+        long average = calcAverage(sales);
         int countBelowAverage = 0;
         int month = 0;
 
