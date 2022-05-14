@@ -1,5 +1,8 @@
 package ru.netology.stats;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class StatsService {
 
     public long calcSum(long[] sales) {
@@ -21,35 +24,69 @@ public class StatsService {
         return average;
     }
 
-    public int minSales(long[] sales) {
-        int minMonth = 0;
-        int month = 0;
-
+    public long findMinSale(long[] sales){
+        long minSale = sales[0];
         for (long sale : sales) {
-
-            if (sale <= sales[minMonth]) {
-                minMonth = month;
+            if (sale <= minSale){
+                minSale = sale;
             }
-
-            month++;
         }
-
-        return minMonth + 1;
+        return minSale;
     }
 
-    public int maxSales(long[] sales) {
-        int maxMonth = 0;
+    public long findMaxSale(long[] sales){
+        long maxSale = sales[0];
+        for (long sale : sales) {
+            if (sale >= maxSale){
+                maxSale = sale;
+            }
+        }
+        return maxSale;
+    }
+    public int[] minSales(long[] sales) {
+        ArrayList<Integer> minMonthNum = new ArrayList<>();
+        int minMonth = 0;
         int month = 0;
+        long minSale = findMinSale(sales);
 
         for (long sale : sales) {
 
-            if (sale >= sales[maxMonth]) {
-                maxMonth = month;
+            if (sale <= minSale) {
+                minMonth = month + 1;
+                minMonthNum.add(minMonth);
             }
+
             month++;
         }
+        int[] minMonthNums = new  int[minMonthNum.size()];
 
-        return maxMonth + 1;
+        for (int i = 0; i < minMonthNum.size(); i++){
+            minMonthNums[i] = minMonthNum.get(i);
+        }
+        return minMonthNums;
+    }
+
+    public int[] maxSales(long[] sales) {
+        ArrayList<Integer> maxMonthNum = new ArrayList<>();
+        int maxMonth = 0;
+        int month = 0;
+        long maxSale = findMaxSale(sales);
+
+        for (long sale : sales) {
+
+            if (sale >= maxSale) {
+                maxMonth = month + 1;
+                maxMonthNum.add(maxMonth);
+            }
+
+            month++;
+        }
+        int[] maxMonthNums = new  int[maxMonthNum.size()];
+
+        for (int i = 0; i < maxMonthNum.size(); i++){
+            maxMonthNums[i] = maxMonthNum.get(i);
+        }
+        return maxMonthNums;
     }
 
     public int aboveAverage(long[] sales) {
